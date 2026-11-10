@@ -1,0 +1,130 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <!-- Nom du projet -->
+    <a class="navbar-brand" routerLink="/drones" (click)="fermerMenus()">
+      Gestion des Drones
+    </a>
+
+    <!-- Menu principal -->
+    <ul class="navbar-nav me-auto">
+
+      <!-- Home -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/drones" (click)="fermerMenus()">
+          Home
+        </a>
+      </li>
+
+      <!-- Menu Drones -->
+      <li class="nav-item dropdown">
+        <button
+          class="nav-link dropdown-toggle menu-bouton"
+          type="button"
+          (click)="toggleDrones()"
+          [attr.aria-expanded]="menuDronesOuvert">
+          Drones
+        </button>
+
+        @if (menuDronesOuvert) {
+          <ul class="dropdown-menu show">
+
+            @if (authService.isAdmin()) {
+              <li>
+                <a class="dropdown-item"
+                   routerLink="/add-drone"
+                   (click)="fermerMenus()">
+                  Ajouter un drone
+                </a>
+              </li>
+            }
+
+            <li>
+              <a class="dropdown-item"
+                 routerLink="/drones"
+                 (click)="fermerMenus()">
+                Lister les drones
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item"
+                 routerLink="/recherche-par-categorie"
+                 (click)="fermerMenus()">
+                Recherche par catégorie
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item"
+                 routerLink="/rechercheParNom"
+                 (click)="fermerMenus()">
+                Recherche par nom
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item"
+                 routerLink="/rechercheParNomPipe"
+                 (click)="fermerMenus()">
+                Recherche par nom (Pipe)
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item"
+                routerLink="/listeCategories"
+               >
+                Gestion des catégories
+              </a>
+            </li>
+          </ul>
+        }
+      </li>
+    </ul>
+
+    <!-- Menu utilisateur à droite -->
+    <ul class="navbar-nav ms-auto">
+
+      <li class="nav-item dropdown">
+        <button
+          class="nav-link dropdown-toggle menu-bouton"
+          type="button"
+          (click)="toggleUtilisateur()"
+          [attr.aria-expanded]="menuUtilisateurOuvert">
+          {{ authService.loggedUser || 'Utilisateur' }}
+        </button>
+
+        @if (menuUtilisateurOuvert) {
+          <ul class="dropdown-menu dropdown-menu-end show">
+            @if(!authService. isloggedIn) {
+              <li><a class="dropdown-item"routerLink="/login">Login</a></li>
+                  }
+                  @else {
+                  <li><a class="dropdown-item"
+
+                  (click) = "onLogout()">Logout</a></li>
+
+                  }
+
+            <!-- Admin toujours visible -->
+            <li>
+              <a class="dropdown-item"
+                 routerLink="/drones"
+                 (click)="fermerMenus()">
+                Admin
+              </a>
+            </li>
+
+          </ul>
+        }
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<!-- Contenu des pages : en dehors de la navbar -->
+<div class="container-fluid mt-4 px-4">
+  <router-outlet></router-outlet>
+</div>

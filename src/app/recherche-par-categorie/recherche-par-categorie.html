@@ -1,0 +1,50 @@
+<div class="container">
+  
+
+
+
+
+<label>Choisir un type :</label>
+
+<select
+  [(ngModel)]="nomCategorieSelectionnee"
+  (change)="onChange()"
+>
+  <option value="">-- Choisir un type --</option>
+
+  <option *ngFor="let categorie of categories"
+          [value]="categorie.nomType">
+    {{ categorie.nomType }}
+  </option>
+</select>
+
+
+
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Marque</th>
+        <th>Prix</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (drone of drones; track drone.idDrone) {
+        <tr>
+          <td>{{ drone.idDrone }}</td>
+          <td>{{ drone.nomDrone }}</td>
+          <td>{{ drone.marqueDrone }}</td>
+          <td>{{ drone.prixDrone }} DT</td>
+          <td>{{ drone.type?.nomType }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5">Aucun drone trouvé.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

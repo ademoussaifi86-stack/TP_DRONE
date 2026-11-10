@@ -1,0 +1,82 @@
+
+<h2 class="mb-4">Ajouter un drone</h2>
+
+<form>
+
+  <div class="mb-3">
+    <label class="form-label">ID :</label>
+    <input
+      type="number"
+      class="form-control"
+      name="idDrone"
+      [(ngModel)]="drone.idDrone"
+      required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Nom :</label>
+    <input
+      type="text"
+      class="form-control"
+      name="nomDrone"
+      [(ngModel)]="drone.nomDrone"
+      required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Marque :</label>
+    <input
+      type="text"
+      class="form-control"
+      name="marqueDrone"
+      [(ngModel)]="drone.marqueDrone"
+      required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Prix :</label>
+    <input
+      type="number"
+      class="form-control"
+      name="prixDrone"
+      [(ngModel)]="drone.prixDrone"
+      required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Date de création :</label>
+    <input
+      type="date"
+      class="form-control"
+      name="dateCreation"
+      [(ngModel)]="drone.dateCreation"
+      required>
+  </div>
+
+  <div class="mb-3">
+    <label for="type" class="form-label">Type de drone :</label>
+
+    <select
+      class="form-select"
+      id="type"
+      name="type"
+      [(ngModel)]="newNomType"
+      required>
+
+      @for (type of types; track type.nomType) {
+        <option [value]="type.nomType">
+          {{ type.nomType }}
+        </option>
+      }
+
+    </select>
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="ajouterDrone()">
+    Ajouter
+  </button>
+
+</form>

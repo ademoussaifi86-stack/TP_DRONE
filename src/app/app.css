@@ -1,0 +1,44 @@
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.navbar {
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.menu-bouton {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  min-width: 220px;
+  margin-top: 2px;
+}
+
+.dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
+.container-fluid {
+  width: 100%;
+}

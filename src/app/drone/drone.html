@@ -1,0 +1,64 @@
+
+<h2>Liste des drones</h2>
+
+<table class="table table-bordered">
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Marque</th>
+      <th>Prix</th>
+      <th>Date de création</th>
+      <th>Type</th>
+      @if(authService.isAdmin()) {
+        <th>Actions</th>
+      }
+    </tr>
+  </thead>
+
+  <tbody>
+
+    @for (drone of drones; track drone.idDrone) {
+
+      <tr>
+        <td>{{ drone.idDrone }}</td>
+        <td>{{ drone.nomDrone }}</td>
+        <td>{{ drone.marqueDrone }}</td>
+        <td>{{ drone.prixDrone }} DT</td>
+        <td>{{ drone.dateCreation | date:'dd/MM/yyyy' }}</td>
+        <td>{{ drone.type?.nomType }}</td>
+
+        @if(authService.isAdmin()) {
+          <td>
+            <button
+              class="btn btn-danger me-2"
+              (click)="supprimerDrone(drone.idDrone!)">
+              Supprimer
+            </button>
+
+            <a
+              class="btn btn-success"
+              [routerLink]="['/update-drone', drone.idDrone]">
+              Modifier
+            </a>
+          </td>
+        }
+
+      </tr>
+
+    }
+
+    @empty {
+
+      <tr>
+        <td colspan="7" class="text-center">
+          Aucun drone trouvé
+        </td>
+      </tr>
+
+    }
+
+  </tbody>
+
+</table>

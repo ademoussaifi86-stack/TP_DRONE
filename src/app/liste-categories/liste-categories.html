@@ -1,0 +1,46 @@
+
+<div class="container mt-4">
+
+  <h2 class="text-center">Gestion des catégories</h2>
+
+  <!-- Formulaire d'ajout et de modification -->
+  <app-update-categorie
+    [categorie]="updatedCat"
+    [ajout]="ajout"
+    (categorieUpdated)="ajouterOuModifierCategorie($event)">
+  </app-update-categorie>
+
+  <hr>
+
+  <!-- Liste des catégories -->
+  <table class="table table-bordered table-striped mt-3">
+
+    <thead class="table-dark">
+      <tr>
+        <th>ID Catégorie</th>
+        <th>Nom Catégorie</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (cat of categories; track cat.idType) {
+        <tr>
+          <td>{{ cat.idType }}</td>
+
+          <td>{{ cat.nomType }}</td>
+
+          <td>
+            <button
+              class="btn btn-warning btn-sm"
+              (click)="updateCat(cat)">
+              Editer
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+
+  </table>
+
+</div>

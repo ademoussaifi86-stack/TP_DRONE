@@ -1,0 +1,86 @@
+
+<h2 class="mb-4">Modifier un drone</h2>
+
+@if (drone) {
+
+  <form>
+
+    <div class="mb-3">
+      <label class="form-label">ID :</label>
+
+      <input
+        type="number"
+        class="form-control"
+        name="idDrone"
+        [(ngModel)]="drone.idDrone"
+        readonly>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Nom :</label>
+
+      <input
+        type="text"
+        class="form-control"
+        name="nomDrone"
+        [(ngModel)]="drone.nomDrone">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Marque :</label>
+
+      <input
+        type="text"
+        class="form-control"
+        name="marqueDrone"
+        [(ngModel)]="drone.marqueDrone">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Prix :</label>
+
+      <input
+        type="number"
+        class="form-control"
+        name="prixDrone"
+        [(ngModel)]="drone.prixDrone">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Date de création :</label>
+
+      <input
+        type="date"
+        class="form-control"
+        name="dateCreation"
+        [ngModel]="datePourFormulaire()"
+        (ngModelChange)="changerDate($event)">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Type de drone :</label>
+
+      <select
+        class="form-select"
+        name="type"
+        [(ngModel)]="updatedNomType">
+
+        @for (type of types; track type.nomType) {
+          <option [value]="type.nomType">
+            {{ type.nomType }}
+          </option>
+        }
+
+      </select>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="updateDrone()">
+      Enregistrer les modifications
+    </button>
+
+  </form>
+
+}
